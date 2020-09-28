@@ -1,0 +1,65 @@
+{# Lancement du projet Symfony #}
+php -S localhost:3000 -t public
+
+{# Création de route pour les urls #}
+* @Route("/hello/{prenom}/age/{age}", name="hello")
+* @Route("/salut", name="hello_base")
+* @Route("/hello/{prenom}", name="hello_prenom")
+
+{# Creation de la bdd - penser a changer le fichier .env #}
+php bin/console doctrine:database:create 
+
+<!-- Créer une entité (bdd) -->
+php bin/console make:entity                 <== Création de l'entitée
+php bin/console make:migration              <== création du fichier de migration
+php bin/console doctrine:migration:migrate  <== envoi la création d'entitée dans la base de donnée
+
+{# ajout du package orm fixtures #}
+composer require orm-fixtures --dev ('--dev' <== veut dire utilisable uniquement en phase de developpement)
+
+{# Création de fichier fixture #}
+php bin/console make:fixtures
+
+{# Installation de doctrine fixtures bundlde #}
+composer require doctrine/doctrine-fixtures-bundle
+
+{# Créer ou recréer des fixtures dans la bdd #}
+modification du fichier fixtures
+php bin/console doctrine:fixtures:load
+
+{# création de donnée aléatoire avec faker #}
+composer require fzaninotto/faker
+
+<!-- Création d'un controller -->
+php bin/console make:controller [nom]
+
+{# Création d'un formulaire #}
+php bin/console make:form
+
+{# slugify #}
+composer require cocur/slugify
+
+{# vider le cache #}
+php bin/console c:c
+
+
+{# recupère tous les champs d'un formulaire #}
+->handleRequest
+
+{# Permet de controler un champs du fomrulaire par rapport au nombre de caractères #}
+@Assert\Length(min=10, max=255, minMessage="Le titre doit faire plus de 10 caractères", maxMessage="Le titre doit faire moins de 255 caractères")
+@Assert\Length(min=10, minMessage="Votre introduction doit faire plus de 20 caractères")
+@Assert\Length(min=100, minMessage="La desription doit faire plus de 100 caractères")
+
+{# permet la création d'entité unique #}
+ @UniqueEntity(
+    fields={"title"},
+    message="Une autre annonce à déja ce titre, veuillez en choisir un autre"
+    )
+
+
+
+<!-- commande pour GIT -->
+git init                        <== création du git
+git add .                       <== ajoute tous dans git
+git commit -m "nom de commit"   <== commit les changements + ajouter un nom
