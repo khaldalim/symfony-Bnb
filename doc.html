@@ -6,6 +6,18 @@ php -S localhost:3000 -t public
 * @Route("/salut", name="hello_base")
 * @Route("/hello/{prenom}", name="hello_prenom")
 
+<!-- Creation user -->
+php bin/console make:user
+
+<!-- creation registration form -->
+php bin/console make:registration-form
+
+<!-- création auth -->
+php bin/console make:auth
+
+<!-- créer les entité en bdd -->
+php bin/console doctrine:schema:update --force
+
 {# Creation de la bdd - penser a changer le fichier .env #}
 php bin/console doctrine:database:create 
 
@@ -26,6 +38,10 @@ composer require doctrine/doctrine-fixtures-bundle
 {# Créer ou recréer des fixtures dans la bdd #}
 modification du fichier fixtures
 php bin/console doctrine:fixtures:load
+
+<!-- Création CRUD -->
+php bin/console make:crud
+
 
 {# création de donnée aléatoire avec faker #}
 composer require fzaninotto/faker
