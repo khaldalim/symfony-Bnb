@@ -1,13 +1,12 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}Edit Article{% endblock %}
+{% block title %}Modifier l'article{% endblock %}
 
 {% block body %}
-    <h1>Edit Article</h1>
+    <h1>Modifier l'article</h1>
 
-    {{ include('article/_form.html.twig', {'button_label': 'Update'}) }}
+    {{ include('article/_form.html.twig', {'button_label': '<i class="fa fa-pencil" aria-hidden="true"></i> Modifier'}) }}
 
-    <a href="{{ path('article_index') }}">back to list</a>
+    <a href="{{ path('article_index_admin') }}">Retour à la liste</a>
 
-    {{ include('article/_delete_form.html.twig') }}
-{% endblock %}
+    {% endblock %}

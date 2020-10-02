@@ -1,5 +1,95 @@
 {% extends "base.html.twig" %}
 
+{% block title %}
+	Bienvenue sur mon site symfont test !
+{% endblock %}
+
+
 {% block body %}
-    Jacques Favorel le best
-{% endblock  %}
+	<div class="container">
+		<div class="jumbotron mt-3">
+			<h1 class="display-3">Bienvenue sur mon site symfony</h1>
+			<p class="lead">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Ex dolorum quia fugit earum quidem eum velit ab porro nulla eaque, beatae nisi itaque mollitia vel.</p>
+			<hr class="my-4">
+			<p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Asperiores, architecto.</p>
+			<p class="lead">
+				<a class="btn btn-primary btn-lg" href="{{ path('article_index') }}" role="button">Voir nos articles</a>
+			</p>
+		</div>
+
+
+		<h2 class="h1 mt-3 mb-4">Lorem, ipsum dolor.</h2>
+		<div class="row">
+
+		{% for article in articles | slice(0,3) %}
+				{% set url = path('article_show', {'slug' : article.slug}) %}
+
+
+				<div class="col-md-4">
+					<div class="card bg-light mb-3">
+						
+						<a href="{{ url }}">
+							<img src="{{article.coverImage}}" alt="Image de l'appartement" style="height:200px; width:100%; display:block;object-fit: cover;">
+						</a>
+
+						<div class="card-body">
+							<h4 class="card-title">
+								<a href="{{url}}">
+									{{article.title}}
+								</a>
+							</h4>
+							<p class="card-text">
+								{{article.description}}
+							</p>
+							<a href="{{url}}" class="btn btn-secondary">En savoir plus</a>
+						</div>
+					</div>
+				</div>
+				{% else %}
+				<div class="col-md-12">
+					Pas de resultats
+				</div>
+			{% endfor %}
+			
+		</div>
+
+		<h2 class="h1 mt-3 mb-4">Nos Auteurs star</h2>
+		<div class="row">
+			<div class="col">
+				<div class="card border-secondary mb3">
+					<div class="card-body">
+						<h4 class="card-title">
+							Lorem, ipsum.
+						</h4>
+						<hr>
+						<div class="card-text">
+							<img src="http://placehold.it/64x64" alt="avatar" class="float-left mr-3">
+							<p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Ratione, suscipit.</p>
+							<a href="#" class="btn btn-success float-right">En savoir plus</a>
+
+						</div>
+
+					</div>
+				</div>
+			</div>
+			<div class="col">
+				<div class="card border-secondary mb3">
+					<div class="card-body">
+						<h4 class="card-title">
+							Lorem, ipsum.
+						</h4>
+						<hr>
+						<div class="card-text">
+							<img src="http://placehold.it/64x64" alt="avatar" class="float-left mr-3">
+							<p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Ratione, suscipit.</p>
+							<a href="#" class="btn btn-success float-right">En savoir plus</a>
+
+						</div>
+
+					</div>
+				</div>
+			</div>
+		</div>
+
+	</div>
+{% endblock %}

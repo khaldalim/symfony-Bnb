@@ -58,6 +58,9 @@ composer require cocur/slugify
 {# vider le cache #}
 php bin/console c:c
 
+{# Check si connecté #}
+{% if app.user %}
+{% endif %}
 
 {# recupère tous les champs d'un formulaire #}
 ->handleRequest
